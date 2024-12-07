@@ -7,7 +7,6 @@ CARE\
 CJ\
 NOEYSOD
 
-# ADCVISER
-
-AJ BANK(ใครรู้ชื่อเต็มมาแก้ให้หน่อย)
+# ADVISER
+ดร. ศิรสิทธิ์ โล่ห์ชนะจิต
 
