@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: "Kanit", serif;
-            background-color: rgb(235, 228, 218);
+            background-color: rgb(255, 245, 219);
         }
         table {
             border: 1px solid black;
@@ -38,7 +38,6 @@
             text-align: left;
             margin-left: 10px;
             padding-left: 30px;
-            
         }
         button {
             display: inline-block;
@@ -50,7 +49,7 @@
         }
         #add {
             margin-left: 70%;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         .but {
             margin-left: 40%;
@@ -69,14 +68,69 @@
             width: 200px;
         }
         #price {
-            margin-top: 50px;
+            margin-top: 40px;
             width: 20%;
         }
-
+        #del {
+            width: 60px;
+        }
+        
+        /* งมป้อปอัพ */
+        .popup {
+            position: absolute;
+            top: -150%;
+            left: 50%;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.25);
+            width: 400px;
+            height: 500px;
+            background-color: rgb(255, 245, 219);
+            padding: 20px 30px;
+            box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+            border-radius: 15px;
+        }
+        .popup.active {
+            top: 50%;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .popup .close-but {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .popup .form h2 {
+            text-align: center;
+            margin: 10px 0px 20px;
+            font-size: 25px;
+        }
+        .popup .form .form-element {
+            margin: 15px 0px;
+        }
+        .popup .form .form-element label {
+            font-size: 16px;
+        }
+        .popup .form .form-element input[type="text"] {
+            margin-top: 5px;
+            display: block;
+            width: 100%;
+            padding: 8px;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid rgb(158, 158, 158);
+        }
+        .popup .form .form-element button {
+            width: 20%;
+        }
+        
     </style>
 <body>
         <!-- ปุ่มเพิ่มสินค้า -->
-        <button id="add">add</button>
+        <button id="add">เพิ่มสินค้า</button>
 
         <!-- รายการสินค้า -->
         <table>
@@ -86,6 +140,7 @@
                 <th>กว้าง x ยาว x สูง</th>
                 <th>น้ำหนัก</th>
                 <th>จำนวน</th>
+                <th></th>
             </tr>
     
             <tr id="item">
@@ -94,6 +149,7 @@
                 <th>10 x 10 x 20 ซม.</th>
                 <th>0.7 กก.</th>
                 <th>5</th>
+                <th><button id="del">delete</button></th>
             </tr>
     
             <tr id="item">
@@ -102,13 +158,14 @@
                 <th>8 x 12 x 6 ซม.</th>
                 <th>0.5 กก.</th>
                 <th>12</th>
+                <th><button id="del">delete</button></th>
             </tr>
         </table>
 
         <!-- ปุ่มล้างข้อมูล + คำนวณราคา -->
         <div class="but">
-            <button id="but">ล้างข้อมูล</button>
-            <button id="but">คำนวณราคา</button>
+            <button id="clear">ล้างข้อมูล</button>
+            <button id="cal">คำนวณราคา</button>
         </div>
 
         <!-- ผลลัพธ์แนะนำกล่อง -->
@@ -133,7 +190,63 @@
                 <th>300 บาท</th>
             </tr>
         </table>
-        
-    
+
+        <!-- งมหน้าป้อป -->
+        <div class="popup">
+            <div class="close-but">&times;</div>
+            <div class="form">
+                <div class="form-element">
+                    <label for="product">สินค้า</label>
+                    <input type="text" id="product">
+                </div>
+                <div class="form-element">
+                    <label for="weight">น้ำหนัก</label>
+                    <input type="text" id="weight">
+                </div>
+                <div class="form-element">
+                    <label for="width">ความกว้าง</label>
+                    <input type="text" id="width">
+                </div>
+                <div class="form-element">
+                    <label for="lenght">ความยาว</label>
+                    <input type="text" id="lenght">
+                </div>
+                <div class="form-element">
+                    <label for="height">ความสูง</label>
+                    <input type="text" id="height">
+                </div>
+                <div class="form-element">
+                    <label for="product-num">จำนวน</label>
+                    <input type="text" id="product-num">
+                </div>
+                <div class="form-element">
+                    <button id="submit">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- js -->
+    <script>
+        document.querySelector("#add").addEventListener("click",function(){
+            document.querySelector(".popup").classList.add("active");
+        })
+
+        document.querySelector(".popup .close-but").addEventListener("click",function(){
+            document.querySelector(".popup").classList.remove("active");
+        })
+
+        //ข้างล่างนี้ถามแชทมา vvv
+        // เลือกปุ่ม delete ทั้งหมด
+        const deleteButtons = document.querySelectorAll("#del");
+        // เพิ่ม event listener ให้กับทุกปุ่ม
+        deleteButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                // ลบแถวของปุ่มนั้น
+                const row = this.closest("tr"); // ค้นหา <tr> ที่ใกล้ที่สุด
+                row.remove(); // ลบ <tr> ออกจาก DOM
+            });
+        });
+
+    </script>
 </body>
 </html>
