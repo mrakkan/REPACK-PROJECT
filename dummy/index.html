@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+    <style>
+        body {
+            font-family: "Kanit", serif;
+            background-color: rgb(235, 228, 218);
+        }
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(255, 255, 255);
+        }
+        #topic {
+            background-color: rgb(231, 99, 99);
+            margin: 10px 0px;
+            height: 50px;
+        }
+        #item {
+            height: 40px;
+            border-bottom: 1px solid rgb(0, 0, 0);
+        }
+        tr,th {
+            font-weight: 400;
+            font-size: 16px;
+            text-align: left;
+            margin-left: 10px;
+            padding-left: 30px;
+            
+        }
+        button {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            font-family: "Kanit", serif;
+            font-weight: 400;
+            font-size: 16px;
+        }
+        #add {
+            margin-left: 70%;
+            margin-top: 40px;
+        }
+        .but {
+            margin-left: 40%;
+            text-align: center;
+        }
+        .result {
+            border: 1px solid black;
+            width: 20%;
+            text-align: center;
+            margin-top: 50px;
+            margin-left: 40%;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+        }
+        img {
+            width: 200px;
+        }
+        #price {
+            margin-top: 50px;
+            width: 20%;
+        }
+
+    </style>
+<body>
+        <!-- ปุ่มเพิ่มสินค้า -->
+        <button id="add">add</button>
+
+        <!-- รายการสินค้า -->
+        <table>
+            <tr id="topic">
+                <th>No.</th>
+                <th>ชื่อสินค้า</th>
+                <th>กว้าง x ยาว x สูง</th>
+                <th>น้ำหนัก</th>
+                <th>จำนวน</th>
+            </tr>
+    
+            <tr id="item">
+                <th>1</th>
+                <th>ขวดน้ำปลาทิพรส</th>
+                <th>10 x 10 x 20 ซม.</th>
+                <th>0.7 กก.</th>
+                <th>5</th>
+            </tr>
+    
+            <tr id="item">
+                <th>2</th>
+                <th>ยาดมหงศ์ไทย</th>
+                <th>8 x 12 x 6 ซม.</th>
+                <th>0.5 กก.</th>
+                <th>12</th>
+            </tr>
+        </table>
+
+        <!-- ปุ่มล้างข้อมูล + คำนวณราคา -->
+        <div class="but">
+            <button id="but">ล้างข้อมูล</button>
+            <button id="but">คำนวณราคา</button>
+        </div>
+
+        <!-- ผลลัพธ์แนะนำกล่อง -->
+        <div class="result">
+            <h2>ขนาดกล่องที่แนะนำ</h2>
+            <img src="https://www.boxify.co.in/pub/media/catalog/product/cache/b6bc529e5e6a5c570cca00f5e8898596/d/o/download_45__2.png">
+            <p>กว้าง x ยาว x สูง</p>
+        </div>
+
+        <!-- ผลรวมน้ำหนัก+ราคา -->
+        <table id="price">
+            <tr>
+                <th>น้ำหนักจริง</th>
+                <th>10 กก.</th>
+            </tr>
+            <tr>
+                <th>โดยปริมาตร</th>
+                <th>12 กก.</th>
+            </tr>
+            <tr>
+                <th>ราคารวม</th>
+                <th>300 บาท</th>
+            </tr>
+        </table>
+        
+    
+</body>
+</html>
